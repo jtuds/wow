@@ -1,0 +1,21 @@
+{
+	"wpVer": "",
+	"url": "",
+	"tablePrefix": "wp_",
+	"dbHost": "localhost",
+	"dbName": "",
+	"dbUser": "root",
+	"dbPass": "",
+	"git": true,
+	"submodule": false,
+	"customDirs": false,
+	"installTheme": true,
+	"themeDir": "health-assured",
+	"themeType": "git",
+	"themeUser": "jtuds",
+	"themeRepo": "wordstart-theme",
+	"themeBranch": "master",
+	"wpDir": ".",
+	"contentDir": "wp-content",
+	"saltKeys": ""
+}
