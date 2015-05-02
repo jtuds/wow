@@ -536,28 +536,36 @@ function truncate_words($text, $limit, $ellipsis = '&hellip;') {
 // Set custom image sizes
 add_image_size( 'example', 1080, 400, true );
 
-// Enqueue jQuery via CDN
-function register_jquery() {
-        wp_deregister_script( 'jquery' );
-        wp_register_script( 'jquery', ( '//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js' ), false, null, true );
-        wp_enqueue_script( 'jquery' );
-    }
-add_action( 'wp_enqueue_scripts', 'register_jquery' );
+// Define the latest or desired jQuery version
+define('JQUERY_V', '2.1.4');
+
+if (JQUERY_V == '') {
+    echo ("You haven't defined the jQuery version you want to use. Define the 'JQUERY_V' consant in the functions.php file");
+} else {
+    // Enqueue jQuery via CDN
+    function register_jquery() {
+            wp_deregister_script( 'jquery' );
+            wp_register_script( 'jquery', ( 'https://ajax.googleapis.com/ajax/libs/jquery/' . JQUERY_V . '/jquery.min.js' ), false, null, true );
+            wp_enqueue_script( 'jquery' );
+        }
+    add_action( 'wp_enqueue_scripts', 'register_jquery' );
+}
 
 // Enqueue scripts and styles
 function enqueue_theme_scripts_and_styles() 
 {
     wp_enqueue_style( 'global', get_template_directory_uri() . '/dist/css/style.css', null, '', '' );
-    wp_enqueue_script( 'modernizr', get_template_directory_uri() . '/dist/js/modernizr.js', null, '', true );
 
     // Enqueue page specific scripts and styles
-
     if (is_singular('example')) {
         // wp_enqueue_script( 'example', get_template_directory_uri() . '/dist/js/example.js', null, '', true );
     }
 
-    // Load our scripts file last so we can manipulate any plugins from here
-    wp_enqueue_script( 'scripts', get_template_directory_uri() . '/dist/js/global.js', null, '', true );
+   // Load concatenated scripts file
+    wp_enqueue_script( 'scripts', get_template_directory_uri() . '/dist/js/scripts.js', null, '', true );
+    
+    // Load our global file last so we can manipulate any plugins from here
+    wp_enqueue_script( 'global', get_template_directory_uri() . '/dist/js/global.js', null, '', true );
 }
 add_action( 'wp_enqueue_scripts', 'enqueue_theme_scripts_and_styles' );
 

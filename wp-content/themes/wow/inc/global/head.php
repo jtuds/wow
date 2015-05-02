@@ -10,9 +10,10 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <meta name="description" content="<?php bloginfo('description'); ?>">
 
+<link href='http://fonts.googleapis.com/css?family=Playfair+Display:400,700,900|Open+Sans:400,700' rel='stylesheet' type='text/css'>
+
 <!-- IE stuff -->
 <!--[if lt IE 9]>
-<script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.2/html5shiv.min.js"></script>
 <link rel="stylesheet" href="<?php echo getThemePath(); ?>/dist/css/ie.css">
 <![endif]-->
 

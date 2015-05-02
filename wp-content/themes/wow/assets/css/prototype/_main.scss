@@ -1,1 +1,90 @@
-/* main */
+/**
+ * Use the prototype folder for quickly styling elements
+ * Any class that has been created in the prototype process should have a "p-" prefix.
+ * When the project goes in to the build stage the prefixed classes should be considered for renaming/restructring and the prefix removed
+ */
+
+body {
+	background-color:
+}
+#{$heading-selectors} {
+	color:$primary;
+	font-family: $brand-face-secondary;
+}
+.p-topbar {
+	background-color:$primary-dark;
+
+	.p-logo, .p-nav {
+		display:inline-block;
+		vertical-align: middle;
+	}
+
+	.p-logo {
+		width:40%;
+	}
+
+	.p-nav {
+		width:60%;
+		text-align:right;
+
+		ul {
+			margin-bottom:0;
+
+			li {
+				padding:$base-spacing-unit;
+
+				a {
+					color:$tertiary;
+					padding:3px;
+					transition: .1s linear;
+
+					&:hover {
+						border-bottom:2px solid $tertiary;
+						margin-bottom:-2px;
+					}
+				}
+			}
+		}
+	}
+}
+
+.p-hero-banner {
+	background-image:url('../images/hero-bg.jpg');
+	background-size:cover;
+	display:table;
+	width:100%;
+	height:80vh;
+	min-height:300px;
+
+	.p-cta-wrap {
+		display:table-cell;
+		vertical-align: middle;
+		text-align: center;
+
+		.p-cta-wrap-inner {
+			display:inline-block;
+			padding:$base-spacing-unit * 2;
+		
+			.p-cta > h1, .p-cta > h2 {
+				color:$tertiary;
+			}
+
+			.p-cta > h1 {
+				font-size:70px;
+				margin-bottom:0;
+				text-shadow:1px 2px 1px $primary-dark;
+			}
+
+			.p-cta > h2 {
+				font-size:32px;
+				text-shadow:1px 1px 1px $primary-dark;
+			}
+
+			.p-cta-btn {
+				line-height: normal;
+				padding:12px;
+			}
+
+		}
+	}
+}

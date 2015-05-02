@@ -15,7 +15,8 @@
  * Setup
  */
 @import "compass/compass";
-@import "vars";
+//@import "vars";
+@import "prototype/vars";
 @import "inuit.css/inuit";
 
 
@@ -40,4 +41,4 @@
 @import "ui/base/tables";
 @import "ui/base/quotes";
 
-@import "ui/prototype/main";
+@import "prototype/main";

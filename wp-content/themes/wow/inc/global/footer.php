@@ -1,5 +1,10 @@
-<footer role="contentinfo">
-
+<footer class="p-footer" role="contentinfo">
+	<div class="p-copyright">Copyright <?php echo date('Y'); ?></div>
+	<ul class="p-footer-links">
+		<li>Courses</li>
+		<li>About</li>
+		<li>Terms</li>
+	</ul>
 </footer>
 
 <!--[if (gte IE 6)&(lte IE 8)]>
