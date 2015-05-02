@@ -14,18 +14,29 @@ module.exports = function(grunt) {
 	if (environment == "james") {
 		grunt.initConfig({
 
+			path: {
+				assets: 'assets',
+				src: 'src',
+				dist: 'dist',
+				sass: '<%= path.assets %>/css',
+				js: '<%= path.assets %>/js',
+				images: '<%= path.assets %>/images',
+				fonts: '<%= path.assets %>/fonts',
+			},
+
 			// Watches for changes and runs tasks
 			watch : {
 				sass : {
-					files : ['assets/css/**/*.scss'],
-					tasks : (hasSass) ? ['sass:dev'] : null,
+					files : ['<%= path.sass %>/*.scss', '<%= path.sass %>/**/*.scss'],
+					tasks : (hasSass) ? ['sass:dev', 'autoprefixer', 'cssmin'] : null,
 					options : {
-						livereload : true
+						livereload : true,
+						sourceMap : true
 					}
 				},
 				js : {
 					files : ['assets/js/**/*.js'],
-					tasks : ['jshint'],
+					tasks : ['jshint', 'uglicat'],
 					options : {
 						livereload : true
 					}
@@ -37,6 +48,18 @@ module.exports = function(grunt) {
 					}
 				}
 			},
+
+			browserSync: {
+        dev: {
+          bsFiles: {
+            src : ['dist/css/*.css', 'dist/js/*.js']
+          },
+          options: {
+            proxy: "jrbd.dev",
+            watchTask: true
+          }
+        }
+      },
 
 			// JsHint your javascript
 			jshint : {
@@ -104,15 +127,36 @@ module.exports = function(grunt) {
 
 			// SVG min
 			svgmin: {
-				production : {
-					files: [
-						{
-							expand: true,
-							cwd: 'assets/images',
-							src: '**/*.svg',
-							dest: 'dist/images'
-						}
-					]
+				options: {
+					plugins: [{
+						removeViewBox: false,
+						collapseGroups: false
+					}, {
+						removeUnknownsAndDefaults: false
+					}]
+				},
+				dist: {
+					files: [{
+						expand: true,
+						cwd: '<%= path.images %>',
+						src: ['*.svg'],
+						dest: '<%= path.dist %>/images',
+						ext: '.svg'
+					}]
+				}
+			},
+
+			grunticon: {
+				icons: {
+					files: [{
+						expand: true,
+						cwd: '<%= path.images %>',
+						src : ['*.svg'],
+						dest: '<%= path.dist %>/images'
+					}],
+					options: {
+						cssprefix: '.icon--'
+					}
 				}
 			},
 
@@ -130,10 +174,11 @@ module.exports = function(grunt) {
 			},
 
 			// Concat JS
+			// Exclude the global file, we load this individually after the scripts file
 			concat: {
 				dist: {
-					src: ['dist/js/*.js'],
-					dest: 'dist/js/global.js',
+					src: ['dist/js/*.js', '!dist/js/global.js'],
+					dest: 'dist/js/scripts.js',
 				}
 			},
 
@@ -144,6 +189,18 @@ module.exports = function(grunt) {
 					src: 'dist/css/style.css',
 					dest: 'dist/css/style.css'
 				}
+			},
+
+			cssmin: {
+			  options: {
+			    shorthandCompacting: false,
+			    roundingPrecision: -1
+			  },
+			  target: {
+			    files: {
+			      'dist/css/style.css': ['dist/css/style.css']
+			    }
+			  }
 			},
 
 			// Modernizr build
@@ -158,7 +215,7 @@ module.exports = function(grunt) {
 
 			        // Based on default settings on http://modernizr.com/download/
 			        "extra" : {
-			            "shiv" : false,
+			            "shiv" : true,
 			            "printshiv" : false,
 			            "load" : true,
 			            "mq" : true,
@@ -225,6 +282,11 @@ module.exports = function(grunt) {
 
 		});
 
+		grunt.registerTask('steve', [
+  		'browserSync',
+  		'watch'
+  	]);
+
 		// Uglify and concat
 		grunt.registerTask("uglicat", ["uglify", "concat"])
 
@@ -243,7 +305,7 @@ module.exports = function(grunt) {
 				arr.push('stylus:production');
 			}
 
-			arr.push('autoprefixer', 'imagemin:production', 'svgmin:production', 'requirejs:production', 'uglify', 'concat', 'modernizr:dist');
+			arr.push('autoprefixer', 'cssmin', 'imagemin:production', 'svgmin:production', 'requirejs:production', 'uglify', 'concat', 'modernizr:dist');
 
 			return arr;
 		});
@@ -264,8 +326,9 @@ module.exports = function(grunt) {
 		});
 
 
-		// Load up tasks	
+		// Load up tasks
 		grunt.loadNpmTasks('grunt-sass');
+		grunt.loadNpmTasks('grunt-contrib-cssmin');
 		grunt.loadNpmTasks('grunt-contrib-jshint');
 		grunt.loadNpmTasks('grunt-contrib-watch');
 		grunt.loadNpmTasks('grunt-contrib-uglify');
@@ -275,6 +338,8 @@ module.exports = function(grunt) {
 		grunt.loadNpmTasks('grunt-autoprefixer');
 		grunt.loadNpmTasks("grunt-modernizr");
 		grunt.loadNpmTasks('grunt-bowercopy');
+		grunt.loadNpmTasks('grunt-grunticon');
+		grunt.loadNpmTasks('grunt-browser-sync');
 
 		// Run bower install
 		grunt.registerTask('bower-install', function() {

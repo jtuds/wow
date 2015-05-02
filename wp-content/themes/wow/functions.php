@@ -415,6 +415,9 @@ function html5_shortcode_demo_2($atts, $content = null) // Demo Heading H2 short
 
 /* End HTML5 Blank */
 
+
+
+
 /*------------------------------------*\
     Custom functions
 \*------------------------------------*/
@@ -489,12 +492,7 @@ function remove_grunion_style() {
 }
 add_action('wp_print_styles', 'remove_grunion_style');
 
-/*------------------------------------*\
-    Per project variable functions
-\*------------------------------------*/
-
 // Set URL paths
-
 function getThemePath() {
     $url = get_template_directory_uri();
     echo $url;
@@ -503,6 +501,10 @@ function getThemePath() {
 function getBasePath() {
     $url = site_url();
     echo $url;
+}
+
+function dist_url() {
+  echo get_template_directory_uri() . '/dist';
 }
 
 function getImagePath($return = false)
@@ -517,6 +519,19 @@ function variable_exists($variable)
 {
   return ! empty($variable) && $variable;
 }
+
+// Truncate words
+function truncate_words($text, $limit, $ellipsis = '&hellip;') {
+    $words = preg_split("/[\n\r\t ]+/", $text, $limit + 1, PREG_SPLIT_NO_EMPTY|PREG_SPLIT_OFFSET_CAPTURE);
+    
+    if (count($words) > $limit) {
+        end($words); //ignore last element since it contains the rest of the string
+        $last_word = preg_replace("/\.$/", "", prev($words));
+           
+        $text =  substr($text, 0, $last_word[1] + strlen($last_word[0])) . $ellipsis;
+    }
+    return $text;
+  }
 
 // Set custom image sizes
 add_image_size( 'example', 1080, 400, true );
@@ -545,24 +560,5 @@ function enqueue_theme_scripts_and_styles()
     wp_enqueue_script( 'scripts', get_template_directory_uri() . '/dist/js/global.js', null, '', true );
 }
 add_action( 'wp_enqueue_scripts', 'enqueue_theme_scripts_and_styles' );
-
-// Helper functions
-// ---------------------------
-function dist_url() {
-  echo get_template_directory_uri() . '/dist';
-}
-
-// Truncate words
-function truncate_words($text, $limit, $ellipsis = '&hellip;') {
-    $words = preg_split("/[\n\r\t ]+/", $text, $limit + 1, PREG_SPLIT_NO_EMPTY|PREG_SPLIT_OFFSET_CAPTURE);
-    
-    if (count($words) > $limit) {
-        end($words); //ignore last element since it contains the rest of the string
-        $last_word = preg_replace("/\.$/", "", prev($words));
-           
-        $text =  substr($text, 0, $last_word[1] + strlen($last_word[0])) . $ellipsis;
-    }
-    return $text;
-  }
 
 ?>
