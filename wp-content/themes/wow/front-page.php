@@ -18,29 +18,47 @@
 			</div>
 		</div>
 
-		<div class="p-featured-courses">
-			<div class="p-featured-course">
-				<h2>Heading</h2>
-				<div class="p-course-cta">
-					<p class="p-course-price">£40</p>
-					<a href="#" class="p-course-view">View</a>
-				</div>
-			</div>
-			<div class="p-featured-course">
-				<h2>Heading</h2>
-				<div class="p-course-cta">
-					<p class="p-course-price">£40</p>
-					<a href="#" class="p-course-view">View</a>
-				</div>
-			</div>
-			<div class="p-featured-course">
-				<h2>Heading</h2>
-				<div class="p-course-cta">
-					<p class="p-course-price">£40</p>
-					<a href="#" class="p-course-view">View</a>
-				</div>
-			</div>
-		</div>
+		<div class="panel panel--half">
+			<div class="wrapper">
+				<div class="p-featured-courses">
+					<div class="grid">
+						<div class="grid__item">
+							<h1>Featured courses</h1>
+						</div><!--/.grid__item -->
+						<div class="grid__item one-third">
+							<div class="p-featured-course">
+								<img class="p-featured-course-img" src="<?php getImagePath(); ?>/course-1.jpg">
+								<h2>Heading</h2>
+								<div class="p-course-cta">
+									<p class="p-course-price">£40</p>
+									<a href="#" class="p-course-view">View</a>
+								</div>
+							</div>
+						</div><!--/.grid__item -->
+						<div class="grid__item one-third">
+							<div class="p-featured-course">
+								<img class="p-featured-course-img" src="<?php getImagePath(); ?>/course-2.jpg">
+								<h2>Heading</h2>
+								<div class="p-course-cta">
+									<p class="p-course-price">£40</p>
+									<a href="#" class="p-course-view">View</a>
+								</div>
+							</div>
+						</div><!--/.grid__item -->
+						<div class="grid__item one-third">
+							<div class="p-featured-course">
+								<img class="p-featured-course-img" src="<?php getImagePath(); ?>/course-3.jpg">
+								<h2>Heading</h2>
+								<div class="p-course-cta">
+									<p class="p-course-price">£40</p>
+									<a href="#" class="p-course-view">View</a>
+								</div>
+							</div>
+						</div><!--/.grid__item -->
+					</div><!--/.grid -->
+				</div><!--/.p-featured-courses -->
+			</div><!--/.wrapper -->
+		</div><!--/.panel -->
 
 		<div class="p-featured-blogs">
 			<h2>Blog/articles</h2>
