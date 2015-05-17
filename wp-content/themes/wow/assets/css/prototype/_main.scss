@@ -99,10 +99,41 @@ body {
 	}
 }
 
-.p-featured-course {
+.p-featured-courses {
+	
+	.p-featured-course {
 
-	.p-featured-course-img {
-		height:260px;
-		width:100%;
+		.p-featured-course-info, .p-course-cta {
+			display:inline-block;
+			width:50%;
+			vertical-align: top;
+		}
+
+		.p-course-cta {
+			text-align: right;
+		}
+
+		.p-featured-course-img {
+			height:260px;
+			width:100%;
+			margin-bottom: $base-spacing-unit/2;
+		}
+
+		.p-featured-course-title {
+			font-weight:400;
+			margin-bottom:4px;
+		}
+
+		.p-course-price {
+			font-family: $brand-face-secondary;
+		}
+
+		&:after {
+			content:"";
+			display:block;
+			width:1px;
+			height:50%;
+			border-right:1px solid red;
+		}
 	}
 }

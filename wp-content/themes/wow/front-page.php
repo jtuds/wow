@@ -28,30 +28,36 @@
 						<div class="grid__item one-third">
 							<div class="p-featured-course">
 								<img class="p-featured-course-img" src="<?php getImagePath(); ?>/course-1.jpg">
-								<h2>Heading</h2>
-								<div class="p-course-cta">
-									<p class="p-course-price">£40</p>
-									<a href="#" class="p-course-view">View</a>
+								<div class="p-featured-course-info">
+									<h2 class="p-featured-course-title">St Andrews</h2>
+									<p class="p-course-price">£33 <span>per person</span></p>
+								</div><!--
+								--><div class="p-course-cta">
+									<a href="#" class="btn btn--background-secondary-tri-one p-cta-btn p-course-view">View competitions</a>
 								</div>
 							</div>
 						</div><!--/.grid__item -->
 						<div class="grid__item one-third">
 							<div class="p-featured-course">
 								<img class="p-featured-course-img" src="<?php getImagePath(); ?>/course-2.jpg">
-								<h2>Heading</h2>
-								<div class="p-course-cta">
-									<p class="p-course-price">£40</p>
-									<a href="#" class="p-course-view">View</a>
+								<div class="p-featured-course-info">
+									<h2 class="p-featured-course-title">Augusta</h2>
+									<p class="p-course-price">£40 <span>per person</span></p>
+								</div><!--
+								--><div class="p-course-cta">
+									<a href="#" class="btn btn--background-secondary-tri-one p-cta-btn p-course-view">View competitions</a>
 								</div>
 							</div>
 						</div><!--/.grid__item -->
 						<div class="grid__item one-third">
 							<div class="p-featured-course">
 								<img class="p-featured-course-img" src="<?php getImagePath(); ?>/course-3.jpg">
-								<h2>Heading</h2>
-								<div class="p-course-cta">
-									<p class="p-course-price">£40</p>
-									<a href="#" class="p-course-view">View</a>
+								<div class="p-featured-course-info">
+									<h2 class="p-featured-course-title">Pine Valley</h2>
+									<p class="p-course-price">£25 <span>per person</span></p>
+								</div><!--
+								--><div class="p-course-cta">
+									<a href="#" class="btn btn--background-secondary-tri-one p-cta-btn p-course-view">View competitions</a>
 								</div>
 							</div>
 						</div><!--/.grid__item -->
