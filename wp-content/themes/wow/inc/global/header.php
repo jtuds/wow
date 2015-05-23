@@ -18,7 +18,7 @@
 
 			--><nav class="p-nav">
 				<ul class="nav">
-					<li><a href="#">Courses</a></li>
+					<li><a href="<?php getBasePath(); ?>/?post_type=tribe_events">Events</a></li>
 					<li><a href="#">About</a></li>
 					<li><a href="#">Item 1</a></li>
 					<li><a href="#">Item 2</a></li>

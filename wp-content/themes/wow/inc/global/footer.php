@@ -1,10 +1,18 @@
 <footer class="p-footer" role="contentinfo">
-	<div class="p-copyright">Copyright <?php echo date('Y'); ?></div>
-	<ul class="p-footer-links">
-		<li>Courses</li>
-		<li>About</li>
-		<li>Terms</li>
-	</ul>
+
+	<div class="grid">
+		<div class="grid__item one-half">
+			<div class="p-copyright">Copyright <?php echo date('Y'); ?></div>
+		</div><!--/.grid__item -->
+		<div class="grid__item one-half">
+			<ul class="p-footer-links">
+				<li>Courses</li>
+				<li>About</li>
+				<li>Terms</li>
+			</ul>
+		</div><!--/.grid__item -->
+	</div><!--/.grid -->
+	
 </footer>
 
 <!--[if (gte IE 6)&(lte IE 8)]>

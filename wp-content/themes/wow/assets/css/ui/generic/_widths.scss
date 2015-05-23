@@ -105,7 +105,6 @@
 		min-height:100%;
 		padding-top:$base-spacing-unit * 4;
 		padding-bottom:$base-spacing-unit * 4;
-        margin-bottom:$base-spacing-unit * 2;
     
     // Hopefully is ok
     p:last-child { margin-bottom: 0; }
@@ -113,7 +112,6 @@
 		@include media-query(portable) {
 			padding-top:$base-spacing-unit * 3;
 			padding-bottom:$base-spacing-unit * 3;
-            margin-bottom:$base-spacing-unit / 2;
 		}
 	}
 	
