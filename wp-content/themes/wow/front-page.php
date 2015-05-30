@@ -25,42 +25,41 @@
 						<div class="grid__item">
 							<h1 class="p-featured-events-heading">Featured events</h1>
 						</div><!--/.grid__item -->
-						<div class="grid__item one-third">
-							<div class="p-featured-event">
-								<img class="p-featured-event-img" src="<?php getImagePath(); ?>/course-1.jpg">
-								<div class="p-featured-event-info">
-									<h2 class="p-featured-event-title">St Andrews</h2>
-									<p class="p-event-price">£33 <span>per person</span></p>
-								</div><!--
-								--><div class="p-event-cta">
-									<a href="#" class="btn btn--background-secondary-tri-one p-cta-btn p-event-view">View event</a>
-								</div>
-							</div>
-						</div><!--/.grid__item -->
-						<div class="grid__item one-third">
-							<div class="p-featured-event">
-								<img class="p-featured-event-img" src="<?php getImagePath(); ?>/course-2.jpg">
-								<div class="p-featured-event-info">
-									<h2 class="p-featured-event-title">Augusta</h2>
-									<p class="p-event-price">£40 <span>per person</span></p>
-								</div><!--
-								--><div class="p-event-cta">
-									<a href="#" class="btn btn--background-secondary-tri-one p-cta-btn p-event-view">View event</a>
-								</div>
-							</div>
-						</div><!--/.grid__item -->
-						<div class="grid__item one-third">
-							<div class="p-featured-event">
-								<img class="p-featured-event-img" src="<?php getImagePath(); ?>/course-3.jpg">
-								<div class="p-featured-event-info">
-									<h2 class="p-featured-event-title">Pine Valley</h2>
-									<p class="p-event-price">£25 <span>per person</span></p>
-								</div><!--
-								--><div class="p-event-cta">
-									<a href="#" class="btn btn--background-secondary-tri-one p-cta-btn p-event-view">View event</a>
-								</div>
-							</div>
-						</div><!--/.grid__item -->
+
+						<?php 
+						$query = new WP_Query( array('post_type'=>'tribe_events','posts_per_page'         => '3') );
+						if($query->have_posts()):
+
+							$temp_img_counter = 1;
+
+							$html = '';
+
+							while($query->have_posts()): $query->the_post();
+
+							$event_name = $post->post_title;
+							$post_link = get_the_permalink($post->ID);
+							$event_cost = tribe_get_cost( null, true );
+
+							$html .= '<div class="grid__item one-third">';
+							$html .= '<div class="p-featured-event">';
+							$html .= '<img class="p-featured-event-img" src="' . getImagePath(true) . '/course-' . $temp_img_counter . '.jpg">';
+							$html .= '<div class="p-featured-event-info">';
+							$html .= '<h2 class="p-featured-event-title">' . $event_name . '</h2>';
+							$html .= '<p class="p-event-price">' . $event_cost . ' <span>per person</span></p>';
+							$html .= '</div>';
+							$html .= '<div class="p-event-cta">';
+							$html .= '<a href="' . $post_link . '" class="btn btn--background-secondary-tri-one p-cta-btn p-event-view">View event</a>';
+							$html .= '</div>';
+							$html .= '</div>';
+							$html .= '</div>';
+
+							$temp_img_counter++; endwhile;
+
+							echo $html;
+
+						endif;
+						?>
+
 					</div><!--/.grid -->
 				</div><!--/.p-featured-events -->
 			</div><!--/.wrapper -->
